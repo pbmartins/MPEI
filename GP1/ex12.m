@@ -1,7 +1,7 @@
 % Alinea e)
 N = 1e6;
-P = 3; % Numero de palavras
-F = 2; % Numero de palavras por frase
+P = 10; % Numero de palavras
+F = 5; % Numero de palavras por frase
 P_Um_Dois = PSair1Sabendo2(N, P, F);
 fprintf('Probabilidade de sequencia incluir 1, sabendo que inclui 2: %f\n', P_Um_Dois);
 
