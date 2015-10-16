@@ -1,0 +1,1 @@
+hist(exponencial (0.5, 10000),20);
