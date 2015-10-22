@@ -1,0 +1,23 @@
+tablesize = 1250;
+array = arrayfun(@(i) hashstring(hashfunctionv2(), tablesize), 1:1000);
+N = zeros(1, tablesize);
+X = zeros(tablesize, 5);
+
+for i = 0:tablesize-1
+    N(i + 1) = sum(array == i);
+    X(N(i + 1)+1) = X(N(i + 1)+1) + 1;
+end
+
+hist(X, [0 1 2 );
+% subplot(1, 3, 1);
+% bar(N);
+% 
+% subplot(1, 3, 2);
+% bar(N / tablesize);
+% 
+% fprintf('Factor de carga: %f\n', 1000 / tablesize);
+% 
+% subplot(1, 3, 3);
+% bar(N / 1000);
+% fprintf('Media de comprimento: %f\n', mean(N));
+% fprintf('Variancia de comprimento: %f\n', var(N));
