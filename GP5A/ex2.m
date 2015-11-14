@@ -1,30 +1,36 @@
-T = [0.7 0.2 0.3;
-    0.2 0.3 0.3;
-    0.1 0.5 0.4];
+clear, clc
 
-X0 = [1; 0; 0];
-X1 = T^2 * X0;
-PChuva_X2 = X1(3)
+% Alinea a
+T = [0.7 0.2 0.1
+     0.2 0.3 0.5
+     0.3 0.3 0.4]';
+ 
+% Alinea b
+X0 = [1 0 0]';
+X2 = T * T * X0;
+fprintf('Probabilidade de chuva no dia 2: %f\n', X2(2));
 
-pT20 = T(:);
+% Alinea c
+Ttotal = T(:);
 helper = T;
 for i = 1:20
-    helper = T * helper;
-    pT20 = [pT20 helper(:)];
+    helper = helper * T;
+    Ttotal = [Ttotal helper(:)];
 end
 
 subplot(1, 2, 1);
-plot(pT20');
+plot(Ttotal');
 
-p0_20_min = T(:);
+% Alinea d
+Ttotal = T(:);
 helper = T;
 diff = 1;
 while diff > 10^-4
-    X1 = T * helper;
-    diff = max(abs(X1 - helper));
-    helper = X1;
-    p0_20_min = [p0_20_min, helper(:)];
+    last = helper;
+    helper = helper * T;
+    diff = max(abs(helper - last));
+    Ttotal = [Ttotal helper(:)];
 end
 
 subplot(1, 2, 2);
-plot(p0_20_min');
+plot(Ttotal');
